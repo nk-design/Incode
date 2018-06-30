@@ -442,6 +442,9 @@ var CONTACTS = [
   }
 ];
 
+// var xhr = new XMLHttpRequest();
+// xhr.open('GET', 'clients.json', true);
+// xhr.send();
 // person = JSON.parse(CONTACTS);
 
 
@@ -470,10 +473,10 @@ var ContactList = React.createClass({
                   backgroundColor: c === this.state.person ? '#b47b44' : ''
                 }
                 return (
-                  <div className="person" onClick={this.handleClick.bind(this, c)} style={contactStyles}>
-                    <span className="image" style={imageStyles}></span>
-                    <span className="name">{c.general.firstName} {c.general.lastName}</span>
-                  </div>
+                  <ul className="person" onClick={this.handleClick.bind(this, c)} style={contactStyles}>
+                    <li className="image" style={imageStyles}></li>
+                    <li className="name">{c.general.firstName} {c.general.lastName}</li>
+                  </ul>
                 );
               }, this)}
           </div>
@@ -493,56 +496,27 @@ var ContactInfo = React.createClass({
     }
     return (
       <div className="info">
-        <header>
+        <div className="top">
           <div className="image" style={styles}></div>
           <h3 className="name">{this.props.person.general.firstName} {this.props.person.general.lastName}</h3>
-        </header>
-        <section>
-          <p className="phone">Phone: {this.props.person.contact.phone}</p>
-          <p className="email">Email: {this.props.person.contact.email}</p>
-          <p className="company">Company: {this.props.person.job.company}</p>
-          <p className="title">Title: {this.props.person.job.title}</p>
-          <p className="address">Address: {this.props.person.address.street}</p>
-          <p className="zipcode">Zipcode: {this.props.person.address.zipCode}</p>
-          <p className="country">Country: {this.props.person.address.country}</p>
-          <p className="city">City: {this.props.person.address.city}</p>
-        </section>
+        </div>
+        <ul className="bottom">
+          <li className="phone">Phone: {this.props.person.contact.phone}</li>
+          <li className="email">Email: {this.props.person.contact.email}</li>
+          <li className="company">Company: {this.props.person.job.company}</li>
+          <li className="title">Title: {this.props.person.job.title}</li>
+          <li className="address">Address: {this.props.person.address.street}</li>
+          <li className="zipcode">Zipcode: {this.props.person.address.zipCode}</li>
+          <li className="country">Country: {this.props.person.address.country}</li>
+          <li className="city">City: {this.props.person.address.city}</li>
+        </ul>
       </div>
     );
   }
 });
 
 
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       items: CONTACTS,
-//       input: ''
-//     }
-//   }
-  
-//   onChangeHandler(e) {
-//     this.setState({
-//       input: e.target.value
-//     })
-//   }
-  
-//   render() {
-//     const list = this.state.items
-//     .filter(item => item.toLowerCase().search(this.state.input.toLowerCase()) !== -1)
-//     .map((item, index) => <li key={index}>{item}</li>)
-    
-//     return (
-//       <div>
-//         <input type="text" placeholder="Search..." onChange={this.onChangeHandler.bind(this)} />
-//         <ul>
-//           { list }
-//         </ul>
-//       </div>
-//     )
-//   }
-// }
+
 
 ReactDOM.render(
   <ContactList />,

@@ -420,6 +420,9 @@ var CONTACTS = [{
   }
 }];
 
+// var xhr = new XMLHttpRequest();
+// xhr.open('GET', 'clients.json', true);
+// xhr.send();
 // person = JSON.parse(CONTACTS);
 
 
@@ -458,11 +461,11 @@ var ContactList = React.createClass({
               backgroundColor: c === this.state.person ? '#b47b44' : ''
             };
             return React.createElement(
-              'div',
+              'ul',
               { className: 'person', onClick: this.handleClick.bind(this, c), style: contactStyles },
-              React.createElement('span', { className: 'image', style: imageStyles }),
+              React.createElement('li', { className: 'image', style: imageStyles }),
               React.createElement(
-                'span',
+                'li',
                 { className: 'name' },
                 c.general.firstName,
                 ' ',
@@ -492,8 +495,8 @@ var ContactInfo = React.createClass({
       'div',
       { className: 'info' },
       React.createElement(
-        'header',
-        null,
+        'div',
+        { className: 'top' },
         React.createElement('div', { className: 'image', style: styles }),
         React.createElement(
           'h3',
@@ -504,52 +507,52 @@ var ContactInfo = React.createClass({
         )
       ),
       React.createElement(
-        'section',
-        null,
+        'ul',
+        { className: 'bottom' },
         React.createElement(
-          'p',
+          'li',
           { className: 'phone' },
           'Phone: ',
           this.props.person.contact.phone
         ),
         React.createElement(
-          'p',
+          'li',
           { className: 'email' },
           'Email: ',
           this.props.person.contact.email
         ),
         React.createElement(
-          'p',
+          'li',
           { className: 'company' },
           'Company: ',
           this.props.person.job.company
         ),
         React.createElement(
-          'p',
+          'li',
           { className: 'title' },
           'Title: ',
           this.props.person.job.title
         ),
         React.createElement(
-          'p',
+          'li',
           { className: 'address' },
           'Address: ',
           this.props.person.address.street
         ),
         React.createElement(
-          'p',
+          'li',
           { className: 'zipcode' },
           'Zipcode: ',
           this.props.person.address.zipCode
         ),
         React.createElement(
-          'p',
+          'li',
           { className: 'country' },
           'Country: ',
           this.props.person.address.country
         ),
         React.createElement(
-          'p',
+          'li',
           { className: 'city' },
           'City: ',
           this.props.person.address.city
@@ -558,40 +561,5 @@ var ContactInfo = React.createClass({
     );
   }
 });
-
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       items: CONTACTS,
-//       input: ''
-//     };
-//   }
-
-//   onChangeHandler(e) {
-//     this.setState({
-//       input: e.target.value
-//     });
-//   }
-
-//   render() {
-//     const list = this.state.items.filter(item => item.toLowerCase().search(this.state.input.toLowerCase()) !== -1).map((item, index) => React.createElement(
-//       'li',
-//       { key: index },
-//       item
-//     ));
-
-//     return React.createElement(
-//       'div',
-//       null,
-//       React.createElement('input', { type: 'text', placeholder: 'Search...', onChange: this.onChangeHandler.bind(this) }),
-//       React.createElement(
-//         'ul',
-//         null,
-//         list
-//       )
-//     );
-//   }
-// }
 
 ReactDOM.render(React.createElement(ContactList, null), document.getElementById("content"));
