@@ -463,7 +463,7 @@ var ContactList = React.createClass({
       <div className="main">
         <div className="preview">
           <h2>Contacts</h2>
-          <div className="list">
+          <ul className="list">
             {CONTACTS.map(function(c){
       console.log(c);
                 var imageStyles = {
@@ -473,13 +473,13 @@ var ContactList = React.createClass({
                   backgroundColor: c === this.state.person ? '#b47b44' : ''
                 }
                 return (
-                  <ul className="person" onClick={this.handleClick.bind(this, c)} style={contactStyles}>
-                    <li className="image" style={imageStyles}></li>
-                    <li className="name">{c.general.firstName} {c.general.lastName}</li>
-                  </ul>
+                  <li className="person" onClick={this.handleClick.bind(this, c)} style={contactStyles}>
+                    <div className="image" style={imageStyles}></div>
+                    <div className="name">{c.general.firstName} {c.general.lastName}</div>
+                  </li>
                 );
               }, this)}
-          </div>
+          </ul>
         </div>
         <div className="full">
           <ContactInfo person={this.state.person} />
@@ -515,8 +515,66 @@ var ContactInfo = React.createClass({
   }
 });
 
+// class ContactsList extends React.Component{
+//   constructor(){
+//     super();
+//     this.state = {
+//       search: ''
+//     };
+//   }
 
+//   updateSearch(event){
+//     this.setState({search: event.target.value.substr(0,20)});
+//   }
 
+//   render() {
+//     let filteredContacts = this.props.contacts.filter(
+//         (CONTACTS) => {
+//           return person.general.firstName.toLowerCase().indexOf(this.state.search.toLowerCase())!==-1;
+//         }
+//       );
+
+//     return(
+//       <div>
+//         <ul>
+//          {this.props.CONTACTS.map((contacts) =>{
+//             return <Contact contact={contact} key={contact.id} />
+//           })}
+//         </ul>
+//         <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} />
+//       </div>
+//     )
+//   }
+// };
+
+// class ContactsList extends React.Component{
+//   constructor(props){
+//     super(props);
+//     this.state={
+//       searchItem:'',
+//       currentlyDisplayed:this.props.person
+//     };
+
+//     this.onInputChange = this.onInputChange.bind(this);
+//   }
+
+// onInputChange(event){
+//   let newlyDisplayed = _.filter(this.props.person, person => person.firstName.includes(event.target.value.toLowerCase()));
+
+//   this.setState({
+//     searchItem: event.target.value,
+//     currentlyDisplayed: newlyDisplayed
+//   });
+// }
+
+// renderPeople(){
+//   return this.state.currentlyDisplayed.map((person) =>{
+//     return(
+//       <Contact key={person.firstName} person={person}/>
+//     );
+//   });
+// }
+// }
 
 ReactDOM.render(
   <ContactList />,

@@ -26,8 +26,10 @@
 }
 
 .list {
-  height: 90vh;
+  height: 80vh;
   overflow: auto;
+  padding-right: 10px;
+  margin-left: -30px;
 }
 
 .person {
@@ -68,7 +70,7 @@
   font-size: 30px;
 }
 
-.info header {
+.top {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -76,7 +78,7 @@
   align-items: center;
 }
 
-.info header .image {
+.top .image {
   margin: 10px 0;
   height: 150px;
   width: 150px;
@@ -84,19 +86,20 @@
   background-size: cover;
 }
 
-.info header h3 {
+.top h3 {
   margin: 0;
   text-align: center;
 }
 
-.info section {
+.bottom {
   flex: 1;
   padding: 15px;
   font-size: 14px;
 }
 
-.info p{
+.info li{
   font-size: 18px;
+  margin-top: 20px;
 }
 
 ::-webkit-scrollbar-button { 
@@ -130,4 +133,8 @@
 
 ::-webkit-scrollbar{ 
   width: 11px; 
+}
+
+ul li{
+  list-style-type: none;
 }
