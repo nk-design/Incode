@@ -1,4 +1,5 @@
-var CONTACTS = [{
+
+const CONTACTS = [{
   general: {
     firstName: 'Liana',
     lastName: 'Crooks',
@@ -420,24 +421,29 @@ var CONTACTS = [{
   }
 }];
 
-// var xhr = new XMLHttpRequest();
-// xhr.open('GET', 'clients.json', true);
-// xhr.send();
-// person = JSON.parse(CONTACTS);
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1');
+xhr.responseType = 'json';
+xhr.onload = function (e) {
+  if (this.status == 200) {
+    console.log('response', this.response);
+  }
+};
+xhr.send();
+//This is an example of typical XHR json parsing, but it can be done 
+//if only file is uploaded on some remote server
 
-
-var ContactList = React.createClass({
-  displayName: 'ContactList',
-
-  getInitialState: function () {
-    return {
+class ContactList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       person: CONTACTS[0]
     };
-  },
-  handleClick: function (contact) {
+  }
+  handleClick(contact) {
     this.setState({ person: contact });
-  },
-  render: function () {
+  }
+  render() {
     return React.createElement(
       'div',
       { className: 'main' },
@@ -454,10 +460,10 @@ var ContactList = React.createClass({
           { className: 'list' },
           CONTACTS.map(function (c) {
             console.log(c);
-            var imageStyles = {
+            let imageStyles = {
               backgroundImage: 'url(' + c.general.avatar + ')'
             };
-            var contactStyles = {
+            let contactStyles = {
               backgroundColor: c === this.state.person ? '#b47b44' : ''
             };
             return React.createElement(
@@ -482,13 +488,11 @@ var ContactList = React.createClass({
       )
     );
   }
-});
+};
 
-var ContactInfo = React.createClass({
-  displayName: 'ContactInfo',
-
-  render: function () {
-    var styles = {
+class ContactInfo extends React.Component {
+  render() {
+    let styles = {
       backgroundImage: 'url(' + this.props.person.general.avatar + ')'
     };
     return React.createElement(
@@ -560,67 +564,6 @@ var ContactInfo = React.createClass({
       )
     );
   }
-});
-
-// class ContactsList extends React.Component{
-//   constructor(){
-//     super();
-//     this.state = {
-//       search: ''
-//     };
-//   }
-
-//   updateSearch(event){
-//     this.setState({search: event.target.value.substr(0,20)});
-//   }
-
-//   render() {
-//     let filteredContacts = this.props.contacts.filter(
-//         (CONTACTS) => {
-//           return person.general.firstName.toLowerCase().indexOf(this.state.search.toLowerCase())!==-1;
-//         }
-//       );
-
-//     return(
-//       <div>
-//         <ul>
-//          {this.props.CONTACTS.map((contacts) =>{
-//             return <Contact contact={contact} key={contact.id} />
-//           })}
-//         </ul>
-//         <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} />
-//       </div>
-//     )
-//   }
-// };
-
-// class ContactsList extends React.Component{
-//   constructor(props){
-//     super(props);
-//     this.state={
-//       searchItem:'',
-//       currentlyDisplayed:this.props.person
-//     };
-
-//     this.onInputChange = this.onInputChange.bind(this);
-//   }
-
-// onInputChange(event){
-//   let newlyDisplayed = _.filter(this.props.person, person => person.firstName.includes(event.target.value.toLowerCase()));
-
-//   this.setState({
-//     searchItem: event.target.value,
-//     currentlyDisplayed: newlyDisplayed
-//   });
-// }
-
-// renderPeople(){
-//   return this.state.currentlyDisplayed.map((person) =>{
-//     return(
-//       <Contact key={person.firstName} person={person}/>
-//     );
-//   });
-// }
-// }
+};
 
 ReactDOM.render(React.createElement(ContactList, null), document.getElementById("content"));
