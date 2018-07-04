@@ -12,5 +12,8 @@
   },
   "scripts": {
     "build": "node_modules/.bin/babel jsx/script.jsx -o js/script.js -w"
+  },
+  "dependencies": {
+    "redux": "^4.0.0"
   }
 }

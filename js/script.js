@@ -1,4 +1,3 @@
-
 const CONTACTS = [{
   general: {
     firstName: 'Liana',
@@ -431,7 +430,117 @@ xhr.onload = function (e) {
 };
 xhr.send();
 //This is an example of typical XHR json parsing, but it can be done 
-//if only file is uploaded on some remote server
+//if only file is uploaded on some remote server as I understand
+
+
+// function filter(state = "", action) {
+//   if (action.type == "FILTER_TEXT") {
+//     return action.text;
+//   } else {
+//     return state;
+//   }
+// }
+
+// let initialState = {
+//   filter: "",
+//   table: CONTACTS
+// };
+
+// let reducer = Redux.combineReducers({CONTACTS, filter})
+// let store = Redux.createStore(reducer, initialState);
+
+// function Search(props) {
+//   return (
+//     <div>
+//       <input type="text" placeholder="Search..." value={props.firstName} onChange={(evt) => {
+//         store.dispatch({type: 'FILTER_TEXT', text: evt.target.value})
+//       }}/>
+//     </div>
+//   );
+// }
+//My redux search input,unfortunately I felt lack of expirience to solve problems that occured
+
+
+// function updateFilter(text) {
+//   return {
+//     type: 'UPDATE_FILTER',
+//     payload: text
+//   }
+// }
+
+// const defaultState = {
+//   names: CONTACTS,
+//   filterText: '',
+// }
+
+// const personNames = (state = defaultState, action) => {
+//   switch (action.type) {
+
+//     case 'UPDATE_FILTER':
+//       return {
+//         state,
+//         filterText: action.payload
+//       }
+
+//     default:
+//       return state
+//   }
+// }
+
+// const { createStore } = Redux
+// const store = createStore(personNames)
+// const { Component } = React;
+
+
+// const NamesList = ({ 
+//   data, 
+//   filter
+// }) => { 
+//   const input = filter.toLowerCase()
+//   const names = data
+//     .filter((person, i) => {
+//       return (
+//         indexOf(person.id) === -1
+//         && !person.name.toLowerCase().indexOf(input)
+//       )
+//     })
+//     .map((person, i) => {
+//       return (
+//         <Name 
+//           id={person.id}
+//           key={i}
+//           info={person}
+//         />
+//       )
+//     })
+
+//   return ( 
+//     <ul> 
+//       {names}
+//     </ul>
+//   )
+// }
+
+// class Search extends Component {
+//   render() {
+//     const { filterVal, filterUpdate} = this.props
+//     return (
+//       <form>
+//         <input 
+//           type='text'
+//           ref='filterInput'
+//           placeholder='Type to filter..'
+//           value={filterVal}
+//           onChange={() => {
+//            filterUpdate(this.refs.filterInput.value) 
+//           }}
+//         /> 
+//       </form>
+//     )
+//   }
+// }
+//My second try to create search input with redux,and I met the same problem
+
 
 class ContactList extends React.Component {
   constructor(props) {
